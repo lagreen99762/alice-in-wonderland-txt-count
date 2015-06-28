@@ -1,10 +1,18 @@
-f = open("/Users/yongcho822/Desktop/alice.txt", "r")
+import string
+
+f = open("/Users/yongcho822/Coding/Development/PycharmProjects/Practice/alice-in-wonderland-txt-count/alice.txt", "r")
 count = {}
+exclude = set(string.punctuation)
 for aline in f:
-    for word in aline.split():
-        word = word.replace('-', '').replace('"','').replace(',','').replace('.','').replace('_','').replace('?','')
-        word = word.replace('?', '').replace('!', '').replace("'",'').replace('(','').replace(')','').replace(':','')
-        word = word.replace('[','').replace(']','').replace(';','')
+    f = ''.join(ch for ch in aline if ch not in exclude)
+    for word in f.split():
+
+        #word.translate(None, string.punctuation) - this doesn't work for some reason
+        #gives an output of 221 words instead of the correct 385.
+        
+        #word = word.replace('-', '').replace('"','').replace(',','').replace('.','').replace('_','').replace('?','')
+        #word = word.replace('?', '').replace('!', '').replace("'",'').replace('(','').replace(')','').replace(':','')
+        #word = word.replace('[','').replace(']','').replace(';','')
 
         word = word.lower()
 
